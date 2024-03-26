@@ -8,13 +8,10 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FScaffold(
+    return const FScaffold(
       body: Column(
         children: [
-          FText(
-            'Главная',
-            type: FTextType.title,
-          ),
+          ViewHeader(title: 'Главная'),
         ],
       ),
     );
