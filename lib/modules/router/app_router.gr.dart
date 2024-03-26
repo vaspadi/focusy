@@ -15,13 +15,39 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    AccentTestRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AccentTestView(),
+      );
+    },
     HomeRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const HomeView(),
       );
-    }
+    },
+    CommasTestRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CommasTestView(),
+      );
+    },
   };
+}
+
+/// generated route for
+/// [AccentTestView]
+class AccentTestRoute extends PageRouteInfo<void> {
+  const AccentTestRoute({List<PageRouteInfo>? children})
+      : super(
+          AccentTestRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AccentTestRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -34,6 +60,20 @@ class HomeRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'HomeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CommasTestView]
+class CommasTestRoute extends PageRouteInfo<void> {
+  const CommasTestRoute({List<PageRouteInfo>? children})
+      : super(
+          CommasTestRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CommasTestRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

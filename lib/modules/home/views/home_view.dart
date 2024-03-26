@@ -1,6 +1,7 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:focusy/core/widgets/index.dart';
+import 'package:focusy/modules/router/app_router.dart';
 
 @RoutePage()
 class HomeView extends StatelessWidget {
@@ -8,10 +9,18 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const FScaffold(
+    return FScaffold(
       body: Column(
         children: [
-          ViewHeader(title: 'Главная'),
+          const ViewHeader(title: 'Главная'),
+          FButton(
+            text: 'Тест ударений',
+            onPressed: () => context.router.push(const AccentTestRoute()),
+          ),
+          FButton(
+            text: 'Тест запятых',
+            onPressed: () => context.router.push(const CommasTestRoute()),
+          ),
         ],
       ),
     );
