@@ -21,6 +21,7 @@ class AccentTestWord extends ConsumerWidget {
       height: 100,
       child: Row(
         // crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: currentTest.test.toSpans().map((e) {
           // final isCorrect = isAnswer &&
 

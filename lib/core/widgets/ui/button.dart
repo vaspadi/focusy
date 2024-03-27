@@ -27,6 +27,7 @@ class FButton extends StatelessWidget implements IButton {
       style: ButtonStyle(
         backgroundColor: style.getBackgroundColor(),
         side: style.getBorderSize(),
+        overlayColor: style.getOverlayColor(),
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         minimumSize: const MaterialStatePropertyAll(Size(double.infinity, 45)),
         shadowColor: const MaterialStatePropertyAll(Colors.transparent),
@@ -68,6 +69,19 @@ enum FButtonStyle {
       case normal:
         return null;
     }
+  }
+
+  MaterialStateProperty<Color> getOverlayColor() {
+    final color = () {
+      switch (this) {
+        case normal:
+          return FColors.back.withOpacity(0.2);
+        case light:
+          return FColors.text.withOpacity(0.2);
+      }
+    }();
+
+    return MaterialStatePropertyAll(color);
   }
 
   Color getTextColor() {

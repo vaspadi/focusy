@@ -6,7 +6,7 @@ class FThemeData {
     textTheme: TextTheme(
       displayMedium: GoogleFonts.rubik(
         textStyle: const TextStyle(
-          fontSize: 40,
+          fontSize: 32,
           fontWeight: FontWeight.w500,
         ),
       ),
@@ -18,7 +18,7 @@ class FThemeData {
       ),
       titleMedium: GoogleFonts.rubik(
         textStyle: const TextStyle(
-          fontSize: 36,
+          fontSize: 24,
           fontWeight: FontWeight.w500,
         ),
       ),

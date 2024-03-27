@@ -17,6 +17,7 @@ class FText extends Text {
       data ?? '',
       style: type.getTextStyle(context)?.copyWith(
             color: color,
+            height: 1,
           ),
     );
   }

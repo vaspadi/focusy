@@ -1,6 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:focusy/core/widgets/index.dart';
+import 'package:focusy/core/widgets/ui/constants/spacing.dart';
 import 'package:focusy/modules/accent_tests/models/current_accent_test_data.dart';
 import 'package:focusy/modules/accent_tests/providers/current_accent_test_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -40,18 +41,16 @@ class AccentTestView extends HookConsumerWidget {
     return FScaffold(
       appBar: const AppBarOfTest(),
       isLoading: tests.isLoading || currentTest == null,
-      body: Column(
+      body: const Column(
         children: [
-          const ViewHeader(
+          ViewHeader(
             title: 'Поставь ударение',
             subtitle: 'Выбери из предложенных вариантов верный',
           ),
-          const AccentTestWord(),
-          FText('answer: ${currentTest?.answer.toString()}'),
-          FText('correct: ${currentTest?.test.correct.toString()}'),
-          FText('skipped: ${(testsNotifier.getSkippedTests().length)}'),
-          FText('passed: ${(testsNotifier.getPassedTests().length)}'),
-          FText('not passed: ${(testsNotifier.getNotPassedTests().length)}'),
+          Spacer(),
+          AccentTestWord(),
+          Spacer(),
+          Spacer(),
         ],
       ),
       bottomNavigationBar: Column(
@@ -73,6 +72,7 @@ class AccentTestView extends HookConsumerWidget {
               text: 'Попробовать еще',
               onPressed: () => currentTestNotifier.reset(),
             ),
+          FSpacing.verticalButtons,
           FButton(
             text: 'Пропустить вопрос',
             disabled: isChecking && answerIsCorrect,

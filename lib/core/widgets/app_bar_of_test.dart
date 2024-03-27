@@ -10,10 +10,17 @@ class AppBarOfTest extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      leading: FIconButton(
-        iconData: Icons.close_rounded,
-        onPressed: () => context.router.pop(),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 28),
+      child: AppBar(
+        leading: Align(
+          alignment: Alignment.centerLeft,
+          child: FIconButton(
+            iconData: Icons.close_rounded,
+            size: 24,
+            onPressed: () => context.router.pop(),
+          ),
+        ),
       ),
     );
   }

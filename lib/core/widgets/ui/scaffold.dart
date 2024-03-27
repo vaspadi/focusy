@@ -20,12 +20,22 @@ class FScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar,
-      body: isLoading
-          ? const Center(
-              child: FPreloader(),
-            )
-          : body,
-      bottomNavigationBar: isLoading ? null : bottomNavigationBar,
+      body: SafeArea(
+        child: isLoading
+            ? const Center(
+                child: FPreloader(),
+              )
+            : Padding(
+                padding: const EdgeInsets.all(36).copyWith(top: 8),
+                child: body,
+              ),
+      ),
+      bottomNavigationBar: isLoading
+          ? null
+          : Padding(
+              padding: const EdgeInsets.all(36).copyWith(top: 18),
+              child: bottomNavigationBar,
+            ),
     );
   }
 }

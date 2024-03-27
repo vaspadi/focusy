@@ -23,7 +23,7 @@ class ViewHeader extends StatelessWidget {
           type: FTextType.title,
         ),
         if (subtitle != null) ...[
-          const SizedBox(height: 17),
+          const SizedBox(height: 8),
           FText(
             subtitle!,
             type: FTextType.description,
