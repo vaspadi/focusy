@@ -13,30 +13,11 @@ class FText extends Text {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = () {
-      final textTheme = Theme.of(context).textTheme;
-
-      switch (type) {
-        case FTextType.word:
-          return textTheme.displayMedium;
-        case FTextType.title:
-          return textTheme.titleMedium;
-        case FTextType.cards:
-          return textTheme.displaySmall;
-        case FTextType.text:
-          return textTheme.bodyMedium;
-        case FTextType.description:
-          return textTheme.bodySmall;
-        case FTextType.button:
-          return textTheme.labelMedium;
-      }
-    }();
-
     return Text(
       data ?? '',
-      style: textStyle?.copyWith(
-        color: color,
-      ),
+      style: type.getTextStyle(context)?.copyWith(
+            color: color,
+          ),
     );
   }
 }
@@ -47,5 +28,26 @@ enum FTextType {
   cards,
   text,
   button,
-  description,
+  description;
+
+  const FTextType();
+
+  TextStyle? getTextStyle(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
+    switch (this) {
+      case word:
+        return textTheme.displayMedium;
+      case title:
+        return textTheme.titleMedium;
+      case cards:
+        return textTheme.displaySmall;
+      case text:
+        return textTheme.bodyMedium;
+      case description:
+        return textTheme.bodySmall;
+      case button:
+        return textTheme.labelMedium;
+    }
+  }
 }
