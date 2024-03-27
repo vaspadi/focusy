@@ -55,13 +55,13 @@ enum FSquareIconButtonStyle {
   MaterialStateProperty<Color> getBackgroundColor() {
     final color = () {
       switch (this) {
-        case FSquareIconButtonStyle.error:
+        case error:
           return FColors.incorrect;
-        case FSquareIconButtonStyle.success:
+        case success:
           return FColors.correct;
-        case FSquareIconButtonStyle.normal:
+        case normal:
           return FColors.backTouchable;
-        case FSquareIconButtonStyle.selected:
+        case selected:
           return FColors.text;
       }
     }();
@@ -71,16 +71,16 @@ enum FSquareIconButtonStyle {
 
   MaterialStateProperty<BorderSide>? getBorderSize() {
     switch (this) {
-      case FSquareIconButtonStyle.normal:
+      case normal:
         return const MaterialStatePropertyAll(
           BorderSide(
             color: Color.fromRGBO(153, 153, 153, 1),
             // style: BorderStyle.none,
           ),
         );
-      case FSquareIconButtonStyle.selected:
-      case FSquareIconButtonStyle.success:
-      case FSquareIconButtonStyle.error:
+      case selected:
+      case success:
+      case error:
         return null;
     }
   }
@@ -88,11 +88,11 @@ enum FSquareIconButtonStyle {
   MaterialStateProperty<Color> getIconColor() {
     final color = () {
       switch (this) {
-        case FSquareIconButtonStyle.normal:
+        case normal:
           return const Color.fromRGBO(153, 153, 153, 1);
-        case FSquareIconButtonStyle.error:
-        case FSquareIconButtonStyle.selected:
-        case FSquareIconButtonStyle.success:
+        case error:
+        case selected:
+        case success:
           return const Color.fromRGBO(255, 255, 255, 1);
       }
     }();

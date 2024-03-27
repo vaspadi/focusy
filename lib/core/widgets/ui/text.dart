@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 class FText extends Text {
   final FTextType type;
+  final Color? color;
 
   const FText(
     super.data, {
     this.type = FTextType.text,
+    this.color,
     super.key,
   });
 
@@ -32,7 +34,9 @@ class FText extends Text {
 
     return Text(
       data ?? '',
-      style: textStyle,
+      style: textStyle?.copyWith(
+        color: color,
+      ),
     );
   }
 }

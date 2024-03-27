@@ -77,6 +77,7 @@ class AccentTestView extends HookConsumerWidget {
             text: 'Пропустить вопрос',
             disabled: isChecking && answerIsCorrect,
             onPressed: () => currentTestNotifier.skip(),
+            style: FButtonStyle.light,
           ),
         ],
       ),
