@@ -20,11 +20,9 @@ class AccentTestWord extends ConsumerWidget {
       alignment: Alignment.bottomCenter,
       height: 100,
       child: Row(
-        // crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: currentTest.test.toSpans().map((e) {
-          // final isCorrect = isAnswer &&
-
           if (!e.isVariant) {
             return FText(
               e.text,
@@ -36,33 +34,40 @@ class AccentTestWord extends ConsumerWidget {
 
           return Stack(
             clipBehavior: Clip.none,
+            alignment: Alignment.center,
             children: [
-              FText(
-                e.text,
-                type: FTextType.word,
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(height: 40),
+                  FText(
+                    e.text,
+                    type: FTextType.word,
+                  ),
+                ],
               ),
-              FSquareIconButton(
-                disabled: isChecking,
-                iconData: Icons.stacked_line_chart_sharp,
-                onPressed: () => currentTestNotifier.selectVariant(e.value),
-                style: () {
-                  if (!isAnswer) {
-                    return FSquareIconButtonStyle.normal;
-                  }
-
-                  if (isChecking) {
-                    if (currentTest.answerIsCorrect) {
-                      return FSquareIconButtonStyle.success;
+              Positioned(
+                top: 0,
+                child: FSquareIconButton(
+                  disabled: isChecking,
+                  iconData: Icons.stacked_line_chart_sharp,
+                  onPressed: () => currentTestNotifier.selectVariant(e.value),
+                  style: () {
+                    if (!isAnswer) {
+                      return FSquareIconButtonStyle.normal;
                     }
 
-                    return FSquareIconButtonStyle.error;
-                  }
+                    if (isChecking) {
+                      if (currentTest.answerIsCorrect) {
+                        return FSquareIconButtonStyle.success;
+                      }
 
-                  return FSquareIconButtonStyle.selected;
-                }(),
-                // isAnswer
-                //     ? FSquareIconButtonStyle.selected
-                //     : FSquareIconButtonStyle.normal,
+                      return FSquareIconButtonStyle.error;
+                    }
+
+                    return FSquareIconButtonStyle.selected;
+                  }(),
+                ),
               ),
             ],
           );

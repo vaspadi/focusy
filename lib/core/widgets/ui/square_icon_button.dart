@@ -36,8 +36,8 @@ class FSquareIconButton extends StatelessWidget implements IButton {
         ),
         elevation: const MaterialStatePropertyAll(1),
         padding: const MaterialStatePropertyAll(EdgeInsets.zero),
-        minimumSize: const MaterialStatePropertyAll(Size(27, 27)),
-        maximumSize: const MaterialStatePropertyAll(Size(27, 27)),
+        minimumSize: const MaterialStatePropertyAll(Size(28, 28)),
+        maximumSize: const MaterialStatePropertyAll(Size(28, 28)),
         iconSize: const MaterialStatePropertyAll(20),
       ),
     );
