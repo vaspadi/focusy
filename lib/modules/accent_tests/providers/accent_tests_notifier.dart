@@ -11,7 +11,7 @@ class AccentTestNotifier extends _$AccentTestNotifier {
   @override
   FutureOr<List<GrammarTest>> build() {
     final repository = ref.watch(accentTestsRepositoryProvider);
-    return repository.fetchAccentTests();
+    return repository.fetchCommaTests();
   }
 
   void changeTestStatus(int index, GrammarTestStatus status) {

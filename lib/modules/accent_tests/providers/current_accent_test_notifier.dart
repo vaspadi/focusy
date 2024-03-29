@@ -15,7 +15,7 @@ class CurrentAccentTestNotifier extends _$CurrentAccentTestNotifier {
   void checkAnswer() {
     if (state == null) return;
 
-    assert(state!.answer != null, 'Answer must be selected!');
+    assert(state!.answers.isNotEmpty, 'Answer must be selected!');
 
     state = state!.copyWith(
       status: CurrentGrammarTestStatus.checking,
@@ -35,7 +35,17 @@ class CurrentAccentTestNotifier extends _$CurrentAccentTestNotifier {
 
   void selectVariant(int index) {
     if (state == null) return;
-    state = state!.copyWith(answer: () => index);
+
+    List<int> answers = [index, ...state!.answers];
+
+    if (answers.length > state!.necessaryNumberOfAnswers) {
+      answers = answers.sublist(0, state!.necessaryNumberOfAnswers);
+    }
+
+    state = state!.copyWith(
+      answer: () => index,
+      answers: answers,
+    );
   }
 
   void setTest(CurrentAccentTestData data) => state = data;

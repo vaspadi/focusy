@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class FThemeData {
   static ThemeData light = ThemeData(
+    buttonTheme: Test(),
     textTheme: TextTheme(
       displayMedium: GoogleFonts.rubik(
         textStyle: const TextStyle(
@@ -41,3 +42,5 @@ class FThemeData {
     ),
   );
 }
+
+class Test extends ButtonThemeData {}

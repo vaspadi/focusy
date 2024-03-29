@@ -4,10 +4,10 @@ import 'package:focusy/core/widgets/index.dart';
 import 'package:focusy/core/widgets/ui/constants/spacing.dart';
 import 'package:focusy/modules/accent_tests/models/current_accent_test_data.dart';
 import 'package:focusy/modules/accent_tests/providers/current_accent_test_notifier.dart';
+import 'package:focusy/modules/accent_tests/widgets/comma_test_proposal.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../providers/accent_tests_notifier.dart';
-import '../widgets/accent_test_word.dart';
 
 @RoutePage()
 class AccentTestView extends HookConsumerWidget {
@@ -48,7 +48,8 @@ class AccentTestView extends HookConsumerWidget {
             subtitle: 'Выбери из предложенных вариантов верный',
           ),
           Spacer(),
-          AccentTestWord(),
+          // AccentTestWord(),
+          CommaTestProposal(),
           Spacer(),
           Spacer(),
         ],

@@ -31,7 +31,7 @@ class AccentTestWord extends ConsumerWidget {
             );
           }
 
-          final isAnswer = currentTest.answer == e.value;
+          final isAnswer = currentTest.answers.contains(e.value);
 
           return Stack(
             clipBehavior: Clip.none,

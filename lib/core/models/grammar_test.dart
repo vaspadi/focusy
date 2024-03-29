@@ -5,7 +5,7 @@ import 'grammar_test_span.dart';
 class GrammarTest {
   final String word;
   final List<int> variants;
-  final int correct;
+  final List<int> correct;
   final GrammarTestStatus status;
 
   const GrammarTest({
@@ -18,7 +18,7 @@ class GrammarTest {
   GrammarTest copyWith({
     String? word,
     List<int>? variants,
-    int? correct,
+    List<int>? correct,
     GrammarTestStatus? status,
   }) {
     return GrammarTest(
@@ -37,7 +37,7 @@ class GrammarTest {
         final text = entry.value;
         final value = entry.key;
         final isVariant = variants.contains(value);
-        final isCorrect = value == correct;
+        final isCorrect = correct.contains(value);
         final lastIsVariant = variants.contains(value - 1);
 
         if (isVariant || lastIsVariant || acc.isEmpty) {
