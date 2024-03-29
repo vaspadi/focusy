@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:focusy/core/widgets/index.dart';
+import 'package:focusy/core/widgets/ui/enums/answer_button_style.dart';
 import 'package:focusy/modules/accent_tests/providers/current_accent_test_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -54,18 +55,18 @@ class AccentTestWord extends ConsumerWidget {
                   onPressed: () => currentTestNotifier.selectVariant(e.value),
                   style: () {
                     if (!isAnswer) {
-                      return FSquareIconButtonStyle.normal;
+                      return FAnswerButtonStyle.normal;
                     }
 
                     if (isChecking) {
                       if (currentTest.answerIsCorrect) {
-                        return FSquareIconButtonStyle.success;
+                        return FAnswerButtonStyle.success;
                       }
 
-                      return FSquareIconButtonStyle.error;
+                      return FAnswerButtonStyle.error;
                     }
 
-                    return FSquareIconButtonStyle.selected;
+                    return FAnswerButtonStyle.selected;
                   }(),
                 ),
               ),

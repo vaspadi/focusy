@@ -25,6 +25,11 @@ class HomeView extends StatelessWidget {
             text: 'Тест запятых',
             onPressed: () => context.router.push(const CommasTestRoute()),
           ),
+          FSpacing.verticalButtons,
+          FButton(
+            text: 'Н и НН',
+            onPressed: () => context.router.push(const SwipeTestRoute()),
+          ),
         ],
       ),
     );

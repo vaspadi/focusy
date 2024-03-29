@@ -13,6 +13,8 @@ dependencies:
   flutter:
     sdk: flutter
   google_fonts: ^6.2.1
+  appinio_swiper: ^2.1.0
+  flutter_hooks: ^0.20.5
 
 dev_dependencies:
   auto_route_generator: ^6.2.0

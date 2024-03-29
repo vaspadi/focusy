@@ -7,7 +7,7 @@ part of 'accent_tests_notifier.dart';
 // **************************************************************************
 
 String _$accentTestNotifierHash() =>
-    r'7eb32dbaf99931a679fa015a266adc931fd0bbc5';
+    r'd56fe28cb69db4c56da6c63384f514756f37c995';
 
 /// See also [AccentTestNotifier].
 @ProviderFor(AccentTestNotifier)

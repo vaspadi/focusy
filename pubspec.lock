@@ -25,6 +25,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.11.2"
+  appinio_swiper:
+    dependency: "direct main"
+    description:
+      name: appinio_swiper
+      sha256: "1946476dcdf2cda6a0bfa5c9fde8d98131228a2c675be26beb14bfa58e479bbc"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   args:
     dependency: transitive
     description:
@@ -271,7 +279,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_hooks:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_hooks
       sha256: cde36b12f7188c85286fba9b38cc5a902e7279f36dd676967106c041dc9dde70

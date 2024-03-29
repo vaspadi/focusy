@@ -26,7 +26,10 @@ class FScaffold extends StatelessWidget {
                 child: FPreloader(),
               )
             : Padding(
-                padding: const EdgeInsets.all(36).copyWith(top: 8),
+                padding: const EdgeInsets.all(36).copyWith(
+                  top: 8,
+                  bottom: bottomNavigationBar == null ? null : 0,
+                ),
                 child: body,
               ),
       ),
