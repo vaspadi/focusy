@@ -9,8 +9,8 @@ class MockGrammarTestsRepository implements IGrammarTestsRepository {
     return const [
       GrammarTest(
         text: 'аэропорты',
-        variants: [0, 1, 5],
-        correct: [0, 5],
+        variants: [1, 5],
+        correct: [5],
       ),
       GrammarTest(
         text: 'банты',
@@ -108,6 +108,47 @@ class MockGrammarTestsRepository implements IGrammarTestsRepository {
         text: 'Озеро остались позади, когда грузовик свернул к деревне.',
         variants: [0, 2, 3],
         correct: [2],
+      ),
+    ];
+  }
+
+  @override
+  Future<List<GrammarTest>> fetchSwipeTests() async {
+    return const [
+      GrammarTest(
+        text: 'Обезья_ий',
+        variants: [0, 1],
+        correct: [0],
+      ),
+      GrammarTest(
+        text: 'Испорче_ый пирог',
+        variants: [0, 1],
+        correct: [1],
+      ),
+      GrammarTest(
+        text: 'Льви_ый',
+        variants: [0, 1],
+        correct: [0],
+      ),
+      GrammarTest(
+        text: 'Несоверше_ый вид',
+        variants: [0, 1],
+        correct: [1],
+      ),
+      GrammarTest(
+        text: 'Карто_ый',
+        variants: [0, 1],
+        correct: [1],
+      ),
+      GrammarTest(
+        text: 'Травя_ой',
+        variants: [0, 1],
+        correct: [0],
+      ),
+      GrammarTest(
+        text: 'Лу_ый',
+        variants: [0, 1],
+        correct: [1],
       ),
     ];
   }

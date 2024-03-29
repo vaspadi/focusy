@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:focusy/core/widgets/index.dart';
 import 'package:focusy/core/widgets/ui/enums/answer_button_style.dart';
-import 'package:focusy/modules/accent_tests/providers/current_accent_test_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../providers/current_grammar_test_notifier.dart';
 
 class AccentTestWord extends ConsumerWidget {
   const AccentTestWord({super.key});
 
   @override
   Widget build(BuildContext context, ref) {
-    final currentTest = ref.watch(currentAccentTestNotifierProvider);
+    final currentTest = ref.watch(currentGrammarTestNotifierProvider);
     final currentTestNotifier =
-        ref.read(currentAccentTestNotifierProvider.notifier);
+        ref.read(currentGrammarTestNotifierProvider.notifier);
 
     if (currentTest == null) return const SizedBox.shrink();
 

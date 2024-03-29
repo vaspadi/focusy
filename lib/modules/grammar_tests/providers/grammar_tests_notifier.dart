@@ -1,14 +1,23 @@
 import 'package:focusy/modules/grammar_tests/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'accent_tests_notifier.g.dart';
+import '../enums/grammar_test_type.dart';
+
+part 'grammar_tests_notifier.g.dart';
 
 @riverpod
-class AccentTestNotifier extends _$AccentTestNotifier {
+class GrammarTestsNotifier extends _$GrammarTestsNotifier {
   @override
-  FutureOr<List<GrammarTest>> build() {
+  FutureOr<List<GrammarTest>> build(GrammarTestType type) {
     final repository = ref.watch(grammarTestsRepositoryProvider);
-    return repository.fetchCommaTests();
+    switch (type) {
+      case GrammarTestType.accent:
+        return repository.fetchAccentTests();
+      case GrammarTestType.comma:
+        return repository.fetchCommaTests();
+      case GrammarTestType.swipe:
+        return repository.fetchSwipeTests();
+    }
   }
 
   void changeTestStatus(int index, GrammarTestStatus status) {

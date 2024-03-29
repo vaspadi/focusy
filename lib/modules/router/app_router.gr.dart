@@ -15,18 +15,6 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    AccentTestRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const AccentTestView(),
-      );
-    },
-    CommasTestRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const CommasTestView(),
-      );
-    },
     HomeRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -39,35 +27,19 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SwipeTestView(),
       );
     },
+    GrammarTestRoute.name: (routeData) {
+      final args = routeData.argsAs<GrammarTestRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: GrammarTestView(
+          title: args.title,
+          type: args.type,
+          subtitle: args.subtitle,
+          key: args.key,
+        ),
+      );
+    },
   };
-}
-
-/// generated route for
-/// [AccentTestView]
-class AccentTestRoute extends PageRouteInfo<void> {
-  const AccentTestRoute({List<PageRouteInfo>? children})
-      : super(
-          AccentTestRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'AccentTestRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [CommasTestView]
-class CommasTestRoute extends PageRouteInfo<void> {
-  const CommasTestRoute({List<PageRouteInfo>? children})
-      : super(
-          CommasTestRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'CommasTestRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -96,4 +68,52 @@ class SwipeTestRoute extends PageRouteInfo<void> {
   static const String name = 'SwipeTestRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [GrammarTestView]
+class GrammarTestRoute extends PageRouteInfo<GrammarTestRouteArgs> {
+  GrammarTestRoute({
+    required String title,
+    required GrammarTestType type,
+    String? subtitle,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          GrammarTestRoute.name,
+          args: GrammarTestRouteArgs(
+            title: title,
+            type: type,
+            subtitle: subtitle,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'GrammarTestRoute';
+
+  static const PageInfo<GrammarTestRouteArgs> page =
+      PageInfo<GrammarTestRouteArgs>(name);
+}
+
+class GrammarTestRouteArgs {
+  const GrammarTestRouteArgs({
+    required this.title,
+    required this.type,
+    this.subtitle,
+    this.key,
+  });
+
+  final String title;
+
+  final GrammarTestType type;
+
+  final String? subtitle;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'GrammarTestRouteArgs{title: $title, type: $type, subtitle: $subtitle, key: $key}';
+  }
 }
