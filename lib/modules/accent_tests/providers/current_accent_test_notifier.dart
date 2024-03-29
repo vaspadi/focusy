@@ -1,5 +1,5 @@
-import 'package:focusy/core/enums/current_grammar_test_status.dart';
-import 'package:focusy/core/enums/grammar_test_status.dart';
+import 'package:focusy/modules/grammar_tests/enums/current_grammar_test_status.dart';
+import 'package:focusy/modules/grammar_tests/enums/grammar_test_status.dart';
 import 'package:focusy/modules/accent_tests/providers/accent_tests_notifier.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

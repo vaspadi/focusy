@@ -1,15 +1,15 @@
-import 'package:focusy/core/enums/grammar_test_status.dart';
+import 'package:focusy/modules/grammar_tests/enums/grammar_test_status.dart';
 
 import 'grammar_test_span.dart';
 
 class GrammarTest {
-  final String word;
+  final String text;
   final List<int> variants;
   final List<int> correct;
   final GrammarTestStatus status;
 
   const GrammarTest({
-    required this.word,
+    required this.text,
     required this.variants,
     required this.correct,
     this.status = GrammarTestStatus.notPassed,
@@ -22,14 +22,14 @@ class GrammarTest {
     GrammarTestStatus? status,
   }) {
     return GrammarTest(
-      word: word ?? this.word,
+      text: word ?? this.text,
       variants: variants ?? this.variants,
       correct: correct ?? this.correct,
       status: status ?? this.status,
     );
   }
 
-  List<GrammarTestSpan> toSpans() => word
+  List<GrammarTestSpan> toSpans() => text
           .split('')
           .asMap()
           .entries

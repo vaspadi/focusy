@@ -1,8 +1,5 @@
-import 'package:focusy/core/enums/grammar_test_status.dart';
-import 'package:focusy/core/models/grammar_test.dart';
+import 'package:focusy/modules/grammar_tests/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-import 'accent_tests_repository_provider.dart';
 
 part 'accent_tests_notifier.g.dart';
 
@@ -10,7 +7,7 @@ part 'accent_tests_notifier.g.dart';
 class AccentTestNotifier extends _$AccentTestNotifier {
   @override
   FutureOr<List<GrammarTest>> build() {
-    final repository = ref.watch(accentTestsRepositoryProvider);
+    final repository = ref.watch(grammarTestsRepositoryProvider);
     return repository.fetchCommaTests();
   }
 

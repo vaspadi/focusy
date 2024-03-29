@@ -1,90 +1,89 @@
-import 'package:focusy/core/models/grammar_test.dart';
+import '../interfaces/I_grammar_tests_repository.dart';
+import '../models/grammar_test.dart';
 
-import '../interfaces/i_accent_tests_repository.dart';
-
-class MockAccentTestsRepository implements IAccentTestsRepository {
+class MockGrammarTestsRepository implements IGrammarTestsRepository {
   @override
   Future<List<GrammarTest>> fetchAccentTests() async {
     // await Future.delayed(const Duration(seconds: 1));
 
     return const [
       GrammarTest(
-        word: 'аэропорты',
+        text: 'аэропорты',
         variants: [0, 1, 5],
         correct: [0, 5],
       ),
       GrammarTest(
-        word: 'банты',
+        text: 'банты',
         variants: [1, 4],
         correct: [1],
       ),
       GrammarTest(
-        word: 'бороду',
+        text: 'бороду',
         variants: [1, 3, 5],
         correct: [1],
       ),
       GrammarTest(
-        word: 'бухгалтеров',
+        text: 'бухгалтеров',
         variants: [4],
         correct: [4],
       ),
       GrammarTest(
-        word: 'вероисповедание',
+        text: 'вероисповедание',
         variants: [9],
         correct: [9],
       ),
       GrammarTest(
-        word: 'водопровод',
+        text: 'водопровод',
         variants: [8],
         correct: [8],
       ),
       GrammarTest(
-        word: 'газопровод',
+        text: 'газопровод',
         variants: [8],
         correct: [8],
       ),
       GrammarTest(
-        word: 'гражданство',
+        text: 'гражданство',
         variants: [5],
         correct: [5],
       ),
       GrammarTest(
-        word: 'дефис',
+        text: 'дефис',
         variants: [3],
         correct: [3],
       ),
       GrammarTest(
-        word: 'дешевизна',
+        text: 'дешевизна',
         variants: [5],
         correct: [5],
       ),
       GrammarTest(
-        word: 'диспансер',
+        text: 'диспансер',
         variants: [7],
         correct: [7],
       ),
       GrammarTest(
-        word: 'договоренность',
+        text: 'договоренность',
         variants: [7],
         correct: [7],
       ),
       GrammarTest(
-        word: 'документ',
+        text: 'документ',
         variants: [5],
         correct: [5],
       ),
       GrammarTest(
-        word: 'досуг',
+        text: 'досуг',
         variants: [3],
         correct: [3],
       ),
       GrammarTest(
-        word: 'еретик',
+        text: 'еретик',
         variants: [4],
         correct: [4],
       ),
       GrammarTest(
-        word: 'жалюзи',
+        text: 'жалюзи',
         variants: [5],
         correct: [5],
       ),
@@ -93,20 +92,20 @@ class MockAccentTestsRepository implements IAccentTestsRepository {
 
   @override
   Future<List<GrammarTest>> fetchCommaTests() async {
-    return [
+    return const [
       GrammarTest(
-        word:
+        text:
             'Сейчас, когда, грузовик свернул, к деревне, озеро осталось позади',
         variants: [0, 1, 3, 5],
         correct: [0, 5],
       ),
       GrammarTest(
-        word: 'Когда грузовик, свернул к деревне, озеро осталось, позади.',
+        text: 'Когда грузовик, свернул к деревне, озеро осталось, позади.',
         variants: [1, 4, 6],
         correct: [4],
       ),
       GrammarTest(
-        word: 'Озеро остались позади, когда грузовик свернул к деревне.',
+        text: 'Озеро остались позади, когда грузовик свернул к деревне.',
         variants: [0, 2, 3],
         correct: [2],
       ),

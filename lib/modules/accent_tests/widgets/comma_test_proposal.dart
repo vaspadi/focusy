@@ -24,7 +24,7 @@ class CommaTestProposal extends ConsumerWidget {
       child: Wrap(
         // mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: WrapCrossAlignment.center,
-        children: currentTest.test.word
+        children: currentTest.test.text
             .split(' ')
             .asMap()
             .entries

@@ -1,5 +1,5 @@
-import 'package:focusy/core/enums/current_grammar_test_status.dart';
-import 'package:focusy/core/models/grammar_test.dart';
+import 'package:focusy/modules/grammar_tests/enums/current_grammar_test_status.dart';
+import 'package:focusy/modules/grammar_tests/models/grammar_test.dart';
 
 class CurrentAccentTestData {
   final GrammarTest test;
