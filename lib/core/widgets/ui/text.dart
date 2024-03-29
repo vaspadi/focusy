@@ -3,11 +3,17 @@ import 'package:flutter/material.dart';
 class FText extends Text {
   final FTextType type;
   final Color? color;
+  final double? height;
+  final double? fontSize;
+  final TextAlign? textAlign;
 
   const FText(
     super.data, {
     this.type = FTextType.text,
     this.color,
+    this.height,
+    this.fontSize,
+    this.textAlign,
     super.key,
   });
 
@@ -17,8 +23,10 @@ class FText extends Text {
       data ?? '',
       style: type.getTextStyle(context)?.copyWith(
             color: color,
-            height: 1,
+            fontSize: fontSize,
+            height: height ?? 1,
           ),
+      textAlign: textAlign,
     );
   }
 }

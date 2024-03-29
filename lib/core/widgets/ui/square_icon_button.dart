@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'constants/colors.dart';
+import 'enums/answer_button_style.dart';
 import 'interfaces/button.dart';
 
 class FSquareIconButton extends StatelessWidget implements IButton {
@@ -9,13 +9,13 @@ class FSquareIconButton extends StatelessWidget implements IButton {
   final bool disabled;
   @override
   final void Function()? onPressed;
-  final FSquareIconButtonStyle style;
+  final FAnswerButtonStyle style;
 
   const FSquareIconButton({
     required this.iconData,
     this.disabled = false,
     this.onPressed,
-    this.style = FSquareIconButtonStyle.normal,
+    this.style = FAnswerButtonStyle.normal,
     super.key,
   });
 
@@ -26,9 +26,9 @@ class FSquareIconButton extends StatelessWidget implements IButton {
       onPressed: disabled ? null : onPressed,
       splashRadius: 1,
       style: ButtonStyle(
-        iconColor: style.getIconColor(),
-        backgroundColor: style.getBackgroundColor(),
-        side: style.getBorderSize(),
+        iconColor: MaterialStatePropertyAll(style.getIconColor()),
+        backgroundColor: MaterialStatePropertyAll(style.getBackgroundColor()),
+        side: MaterialStatePropertyAll(style.getBorderSide()),
         shape: MaterialStatePropertyAll(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(3),
@@ -41,62 +41,5 @@ class FSquareIconButton extends StatelessWidget implements IButton {
         iconSize: const MaterialStatePropertyAll(20),
       ),
     );
-  }
-}
-
-enum FSquareIconButtonStyle {
-  normal,
-  selected,
-  success,
-  error;
-
-  const FSquareIconButtonStyle();
-
-  MaterialStateProperty<Color> getBackgroundColor() {
-    final color = () {
-      switch (this) {
-        case error:
-          return FColors.incorrect;
-        case success:
-          return FColors.correct;
-        case normal:
-          return FColors.backTouchable;
-        case selected:
-          return FColors.text;
-      }
-    }();
-
-    return MaterialStatePropertyAll(color);
-  }
-
-  MaterialStateProperty<BorderSide>? getBorderSize() {
-    switch (this) {
-      case normal:
-        return const MaterialStatePropertyAll(
-          BorderSide(
-            color: Color.fromRGBO(153, 153, 153, 1),
-            // style: BorderStyle.none,
-          ),
-        );
-      case selected:
-      case success:
-      case error:
-        return null;
-    }
-  }
-
-  MaterialStateProperty<Color> getIconColor() {
-    final color = () {
-      switch (this) {
-        case normal:
-          return const Color.fromRGBO(153, 153, 153, 1);
-        case error:
-        case selected:
-        case success:
-          return const Color.fromRGBO(255, 255, 255, 1);
-      }
-    }();
-
-    return MaterialStatePropertyAll(color);
   }
 }
