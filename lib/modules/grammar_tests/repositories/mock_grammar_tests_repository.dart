@@ -87,6 +87,86 @@ class MockGrammarTestsRepository implements IGrammarTestsRepository {
         variants: [5],
         correct: [5],
       ),
+      GrammarTest(
+        text: 'аэропорты',
+        variants: [1, 5],
+        correct: [5],
+      ),
+      GrammarTest(
+        text: 'банты',
+        variants: [1, 4],
+        correct: [1],
+      ),
+      GrammarTest(
+        text: 'бороду',
+        variants: [1, 3, 5],
+        correct: [1],
+      ),
+      GrammarTest(
+        text: 'бухгалтеров',
+        variants: [4],
+        correct: [4],
+      ),
+      GrammarTest(
+        text: 'вероисповедание',
+        variants: [9],
+        correct: [9],
+      ),
+      GrammarTest(
+        text: 'водопровод',
+        variants: [8],
+        correct: [8],
+      ),
+      GrammarTest(
+        text: 'газопровод',
+        variants: [8],
+        correct: [8],
+      ),
+      GrammarTest(
+        text: 'гражданство',
+        variants: [5],
+        correct: [5],
+      ),
+      GrammarTest(
+        text: 'дефис',
+        variants: [3],
+        correct: [3],
+      ),
+      GrammarTest(
+        text: 'дешевизна',
+        variants: [5],
+        correct: [5],
+      ),
+      GrammarTest(
+        text: 'диспансер',
+        variants: [7],
+        correct: [7],
+      ),
+      GrammarTest(
+        text: 'договоренность',
+        variants: [7],
+        correct: [7],
+      ),
+      GrammarTest(
+        text: 'документ',
+        variants: [5],
+        correct: [5],
+      ),
+      GrammarTest(
+        text: 'досуг',
+        variants: [3],
+        correct: [3],
+      ),
+      GrammarTest(
+        text: 'еретик',
+        variants: [4],
+        correct: [4],
+      ),
+      GrammarTest(
+        text: 'жалюзи',
+        variants: [5],
+        correct: [5],
+      ),
     ];
   }
 
@@ -109,12 +189,213 @@ class MockGrammarTestsRepository implements IGrammarTestsRepository {
         variants: [0, 2, 3],
         correct: [2],
       ),
+      GrammarTest(
+        text:
+            'Сейчас, когда, грузовик свернул, к деревне, озеро осталось позади',
+        variants: [0, 1, 3, 5],
+        correct: [0, 5],
+      ),
+      GrammarTest(
+        text: 'Когда грузовик, свернул к деревне, озеро осталось, позади.',
+        variants: [1, 4, 6],
+        correct: [4],
+      ),
+      GrammarTest(
+        text: 'Озеро остались позади, когда грузовик свернул к деревне.',
+        variants: [0, 2, 3],
+        correct: [2],
+      ),
+      GrammarTest(
+        text:
+            'Сейчас, когда, грузовик свернул, к деревне, озеро осталось позади',
+        variants: [0, 1, 3, 5],
+        correct: [0, 5],
+      ),
+      GrammarTest(
+        text: 'Когда грузовик, свернул к деревне, озеро осталось, позади.',
+        variants: [1, 4, 6],
+        correct: [4],
+      ),
+      GrammarTest(
+        text: 'Озеро остались позади, когда грузовик свернул к деревне.',
+        variants: [0, 2, 3],
+        correct: [2],
+      ),
+      GrammarTest(
+        text:
+            'Сейчас, когда, грузовик свернул, к деревне, озеро осталось позади',
+        variants: [0, 1, 3, 5],
+        correct: [0, 5],
+      ),
+      GrammarTest(
+        text: 'Когда грузовик, свернул к деревне, озеро осталось, позади.',
+        variants: [1, 4, 6],
+        correct: [4],
+      ),
+      GrammarTest(
+        text: 'Озеро остались позади, когда грузовик свернул к деревне.',
+        variants: [0, 2, 3],
+        correct: [2],
+      ),
+      GrammarTest(
+        text:
+            'Сейчас, когда, грузовик свернул, к деревне, озеро осталось позади',
+        variants: [0, 1, 3, 5],
+        correct: [0, 5],
+      ),
+      GrammarTest(
+        text: 'Когда грузовик, свернул к деревне, озеро осталось, позади.',
+        variants: [1, 4, 6],
+        correct: [4],
+      ),
+      GrammarTest(
+        text: 'Озеро остались позади, когда грузовик свернул к деревне.',
+        variants: [0, 2, 3],
+        correct: [2],
+      ),
+      GrammarTest(
+        text:
+            'Сейчас, когда, грузовик свернул, к деревне, озеро осталось позади',
+        variants: [0, 1, 3, 5],
+        correct: [0, 5],
+      ),
+      GrammarTest(
+        text: 'Когда грузовик, свернул к деревне, озеро осталось, позади.',
+        variants: [1, 4, 6],
+        correct: [4],
+      ),
+      GrammarTest(
+        text: 'Озеро остались позади, когда грузовик свернул к деревне.',
+        variants: [0, 2, 3],
+        correct: [2],
+      ),
+      GrammarTest(
+        text:
+            'Сейчас, когда, грузовик свернул, к деревне, озеро осталось позади',
+        variants: [0, 1, 3, 5],
+        correct: [0, 5],
+      ),
+      GrammarTest(
+        text: 'Когда грузовик, свернул к деревне, озеро осталось, позади.',
+        variants: [1, 4, 6],
+        correct: [4],
+      ),
+      GrammarTest(
+        text: 'Озеро остались позади, когда грузовик свернул к деревне.',
+        variants: [0, 2, 3],
+        correct: [2],
+      ),
     ];
   }
 
   @override
   Future<List<GrammarTest>> fetchSwipeTests() async {
     return const [
+      GrammarTest(
+        text: 'Обезья_ий',
+        variants: [0, 1],
+        correct: [0],
+      ),
+      GrammarTest(
+        text: 'Испорче_ый пирог',
+        variants: [0, 1],
+        correct: [1],
+      ),
+      GrammarTest(
+        text: 'Льви_ый',
+        variants: [0, 1],
+        correct: [0],
+      ),
+      GrammarTest(
+        text: 'Несоверше_ый вид',
+        variants: [0, 1],
+        correct: [1],
+      ),
+      GrammarTest(
+        text: 'Карто_ый',
+        variants: [0, 1],
+        correct: [1],
+      ),
+      GrammarTest(
+        text: 'Травя_ой',
+        variants: [0, 1],
+        correct: [0],
+      ),
+      GrammarTest(
+        text: 'Лу_ый',
+        variants: [0, 1],
+        correct: [1],
+      ),
+      GrammarTest(
+        text: 'Обезья_ий',
+        variants: [0, 1],
+        correct: [0],
+      ),
+      GrammarTest(
+        text: 'Испорче_ый пирог',
+        variants: [0, 1],
+        correct: [1],
+      ),
+      GrammarTest(
+        text: 'Льви_ый',
+        variants: [0, 1],
+        correct: [0],
+      ),
+      GrammarTest(
+        text: 'Несоверше_ый вид',
+        variants: [0, 1],
+        correct: [1],
+      ),
+      GrammarTest(
+        text: 'Карто_ый',
+        variants: [0, 1],
+        correct: [1],
+      ),
+      GrammarTest(
+        text: 'Травя_ой',
+        variants: [0, 1],
+        correct: [0],
+      ),
+      GrammarTest(
+        text: 'Лу_ый',
+        variants: [0, 1],
+        correct: [1],
+      ),
+      GrammarTest(
+        text: 'Обезья_ий',
+        variants: [0, 1],
+        correct: [0],
+      ),
+      GrammarTest(
+        text: 'Испорче_ый пирог',
+        variants: [0, 1],
+        correct: [1],
+      ),
+      GrammarTest(
+        text: 'Льви_ый',
+        variants: [0, 1],
+        correct: [0],
+      ),
+      GrammarTest(
+        text: 'Несоверше_ый вид',
+        variants: [0, 1],
+        correct: [1],
+      ),
+      GrammarTest(
+        text: 'Карто_ый',
+        variants: [0, 1],
+        correct: [1],
+      ),
+      GrammarTest(
+        text: 'Травя_ой',
+        variants: [0, 1],
+        correct: [0],
+      ),
+      GrammarTest(
+        text: 'Лу_ый',
+        variants: [0, 1],
+        correct: [1],
+      ),
       GrammarTest(
         text: 'Обезья_ий',
         variants: [0, 1],
