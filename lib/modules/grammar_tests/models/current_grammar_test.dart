@@ -9,6 +9,7 @@ class CurrentGrammarTest {
   final int index;
   final List<int> answers;
   final CurrentGrammarTestStatus status;
+  final int combo;
 
   const CurrentGrammarTest({
     required this.test,
@@ -16,6 +17,7 @@ class CurrentGrammarTest {
     required this.index,
     this.answers = const [],
     this.status = CurrentGrammarTestStatus.process,
+    this.combo = 0,
   });
 
   bool get answerIsCorrect {
@@ -43,6 +45,7 @@ class CurrentGrammarTest {
     int? index,
     List<int>? answers,
     CurrentGrammarTestStatus? status,
+    int? combo,
   }) {
     final result = CurrentGrammarTest(
       test: test ?? this.test,
@@ -50,6 +53,7 @@ class CurrentGrammarTest {
       index: index ?? this.index,
       answers: answers ?? this.answers,
       status: status ?? this.status,
+      combo: combo ?? this.combo,
     );
 
     return result;

@@ -84,6 +84,7 @@ class CurrentGrammarTestNotifier extends _$CurrentGrammarTestNotifier {
       test: test,
       index: newIndex,
       type: state!.type,
+      combo: curTestStatus.isPassed ? state!.combo + 1 : 0,
     );
   }
 }

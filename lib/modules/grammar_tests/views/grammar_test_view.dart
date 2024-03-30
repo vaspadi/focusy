@@ -13,6 +13,7 @@ import '../models/current_grammar_test.dart';
 import '../providers/current_grammar_test_notifier.dart';
 import '../providers/grammar_tests_notifier.dart';
 import '../widgets/accent_test_word.dart';
+import '../widgets/progress_app_bar.dart';
 
 @RoutePage()
 class GrammarTestView extends HookConsumerWidget {
@@ -54,7 +55,7 @@ class GrammarTestView extends HookConsumerWidget {
     });
 
     return FScaffold(
-      appBar: const AppBarOfTest(),
+      appBar: const ProgressAppBar(),
       isLoading: tests.isLoading || currentTest == null,
       body: Column(
         children: [
