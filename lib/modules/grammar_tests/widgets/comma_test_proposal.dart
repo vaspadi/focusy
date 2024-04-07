@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:focusy/core/widgets/index.dart';
 import 'package:focusy/core/widgets/ui/constants/colors.dart';
-import 'package:focusy/core/widgets/ui/enums/answer_button_style.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../providers/current_grammar_test_notifier.dart';
@@ -52,9 +51,10 @@ class CommaTestProposal extends ConsumerWidget {
             if (isVariant)
               Container(
                 decoration: BoxDecoration(
-                    border: Border(
-                  bottom: BorderSide(),
-                )),
+                  border: Border(
+                    bottom: BorderSide(color: FColors.touchable),
+                  ),
+                ),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
                     vertical: 4,

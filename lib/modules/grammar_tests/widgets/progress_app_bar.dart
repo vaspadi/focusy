@@ -82,7 +82,7 @@ class ProgressAppBar extends ConsumerWidget implements PreferredSizeWidget {
             child: Align(
               alignment: Alignment.centerRight,
               child: FText(
-                '${rate > 2 ? 2 : rate}x',
+                '${rate > 2 ? 2 : rate.toStringAsFixed(1)}x',
                 type: FTextType.button,
               ),
             ),
