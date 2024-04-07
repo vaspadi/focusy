@@ -8,5 +8,6 @@ class FColors {
   static const Color backTouchable = Color.fromRGBO(239, 239, 239, 1);
 
   static const Color text = Color.fromRGBO(30, 30, 30, 1);
+  static const Color secondaryText = Color.fromRGBO(30, 30, 30, 0.5);
   static const Color back = Color.fromRGBO(255, 255, 255, 1);
 }

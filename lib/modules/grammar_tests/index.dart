@@ -8,3 +8,4 @@ export 'models/grammar_test_span.dart';
 export 'providers/grammar_tests_repository_provider.dart';
 export 'repositories/mock_grammar_tests_repository.dart';
 export 'views/grammar_test_view.dart';
+export 'widgets/grammar_test_tile.dart';
