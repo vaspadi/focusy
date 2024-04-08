@@ -12,7 +12,7 @@ class ProviderLogger extends ProviderObserver {
     log('$provider has been created', name: 'RIVERPOD');
   }
 
-  // @override
+// @override
   // void didUpdateProvider(
   //   ProviderBase<Object?> provider,
   //   Object? previousValue,
@@ -28,5 +28,20 @@ class ProviderLogger extends ProviderObserver {
     ProviderContainer container,
   ) {
     log('$provider deleted from memory', name: 'RIVERPOD');
+  }
+
+  @override
+  void providerDidFail(
+    ProviderBase<Object?> provider,
+    Object error,
+    StackTrace stackTrace,
+    ProviderContainer container,
+  ) {
+    log(
+      'INIT FAIL: $provider',
+      name: 'RIVERPOD',
+      error: error,
+      stackTrace: stackTrace,
+    );
   }
 }
