@@ -24,17 +24,17 @@ class CommaTestProposal extends ConsumerWidget {
       child: Wrap(
         // mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: WrapCrossAlignment.center,
-        children: currentTest.test.text
-            .split(' ')
+        children: currentTest.test!.text
+            .split(RegExp(r'\s+'))
             .asMap()
             .entries
             .fold<List<Widget>>([], (acc, entry) {
           final index = entry.key;
-          final e = entry.value;
-          final isVariant = e.contains(',');
+          final e = entry.value.replaceAll(RegExp(r','), '');
+          // final isVariant = e.contains(',');
+          final isVariant = (currentTest.test?.variants ?? []).contains(index);
           final isAnswer = currentTest.answers.contains(index);
 
-          // if (!isVariant) {
           return [
             ...acc,
             Container(
@@ -44,7 +44,8 @@ class CommaTestProposal extends ConsumerWidget {
                 ),
               ),
               child: FText(
-                isVariant ? e.substring(0, e.length - 1) : '$e ',
+                // isVariant ? e.substring(0, e.length == - 1) : '$e ',
+                e,
                 height: 1.8,
               ),
             ),
@@ -63,7 +64,10 @@ class CommaTestProposal extends ConsumerWidget {
                   child: FSquareIconButton(
                     disabled: isChecking,
                     iconData: Icons.stacked_line_chart_sharp,
-                    onPressed: () => currentTestNotifier.selectVariant(index),
+                    onPressed: () {
+                      print('asldfjk');
+                      currentTestNotifier.selectVariant(index);
+                    },
                     style: () {
                       if (!isAnswer) {
                         return FAnswerButtonStyle.normal;

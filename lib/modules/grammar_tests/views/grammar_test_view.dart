@@ -19,36 +19,37 @@ import '../widgets/progress_app_bar.dart';
 class GrammarTestView extends HookConsumerWidget {
   final String title;
   final String? subtitle;
-  final GrammarTestType type;
+  final int backgroundCardCount;
 
   const GrammarTestView({
     required this.title,
-    required this.type,
     this.subtitle,
+    this.backgroundCardCount = 2,
     super.key,
   });
 
   @override
   Widget build(BuildContext context, ref) {
-    final tests = ref.watch(grammarTestsNotifierProvider(type));
+    // final testsRequest = ref.watch(grammarTestsRequestNotifierProvider);
+    final tests = ref.watch(grammarTestsNotifierProvider);
     final currentTest = ref.watch(currentGrammarTestNotifierProvider);
     final currentTestNotifier =
         ref.read(currentGrammarTestNotifierProvider.notifier);
+    final type = currentTest.test?.type;
 
-    final isProcess = currentTest?.status.isProcess ?? false;
-    final isChecking = currentTest?.status.isChecking ?? false;
-    final answerIsCorrect = currentTest?.answerIsCorrect ?? false;
+    final isProcess = currentTest.status.isProcess;
+    final isChecking = currentTest.status.isChecking;
+    final answerIsCorrect = currentTest.answerIsCorrect;
     final swipeController = useState(AppinioSwiperController());
 
-    ref.listen(grammarTestsNotifierProvider(type), (prev, next) {
+    ref.listen(grammarTestsNotifierProvider, (prev, next) {
       if (prev?.valueOrNull == null &&
           (next.valueOrNull?.isNotEmpty ?? false) &&
-          currentTest?.test == null) {
+          currentTest.test == null) {
         currentTestNotifier.setTest(
           CurrentGrammarTest(
             test: next.value![0],
             index: 0,
-            type: type,
           ),
         );
       }
@@ -56,68 +57,72 @@ class GrammarTestView extends HookConsumerWidget {
 
     return FScaffold(
       appBar: const ProgressAppBar(),
-      isLoading: tests.isLoading || currentTest == null,
-      body: Column(
-        children: [
-          ViewHeader(
-            title: title,
-            subtitle: subtitle,
-          ),
-          const Spacer(),
-          // _getQuestion(),
-          () {
-            switch (type) {
-              case GrammarTestType.accent:
-                return const AccentTestWord();
-              case GrammarTestType.comma:
-                return const CommaTestProposal();
-              case GrammarTestType.swipe:
-                return SwipeTestCard(
-                  controller: swipeController.value,
-                );
-            }
-          }(),
-          const Spacer(),
-          const Spacer(),
-        ],
-      ),
-      bottomNavigationBar: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (!type.isSwipe)
-            if (isProcess)
-              FButton(
-                text: 'Проверить',
-                disabled: !(currentTest?.hasAnswer ?? false),
-                onPressed: () => currentTestNotifier.checkAnswer(),
-              )
-            else if (answerIsCorrect)
-              FButton(
-                text: 'Далее',
-                onPressed: () => currentTestNotifier.pass(),
-              )
-            else
-              FButton(
-                text: 'Попробовать еще',
-                onPressed: () => currentTestNotifier.reset(),
-              ),
-          if (!type.isSwipe) FSpacing.verticalButtons,
-          FButton(
-            text: 'Пропустить вопрос',
-            disabled: isChecking && answerIsCorrect,
-            onPressed: () {
-              switch (type) {
-                case GrammarTestType.swipe:
-                  swipeController.value.swipeDown();
-                case GrammarTestType.accent:
-                case GrammarTestType.comma:
-                  currentTestNotifier.skip();
-              }
-            },
-            style: FButtonStyle.light,
-          ),
-        ],
-      ),
+      isLoading: tests.isLoading || currentTest.test == null,
+      body: type == null
+          ? null
+          : Column(
+              children: [
+                ViewHeader(
+                  title: title,
+                  subtitle: subtitle,
+                ),
+                const Spacer(),
+                () {
+                  switch (type) {
+                    case GrammarTestType.accent:
+                      return const AccentTestWord();
+                    case GrammarTestType.comma:
+                      return const CommaTestProposal();
+                    case GrammarTestType.swipe:
+                      return SwipeTestCard(
+                        controller: swipeController.value,
+                        backgroundCardCount: backgroundCardCount,
+                      );
+                  }
+                }(),
+                const Spacer(),
+                const Spacer(),
+              ],
+            ),
+      bottomNavigationBar: type == null
+          ? null
+          : Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (!type.isSwipe)
+                  if (isProcess)
+                    FButton(
+                      text: 'Проверить',
+                      disabled: !currentTest.hasAnswer,
+                      onPressed: () => currentTestNotifier.checkAnswer(),
+                    )
+                  else if (answerIsCorrect)
+                    FButton(
+                      text: 'Далее',
+                      onPressed: () => currentTestNotifier.pass(),
+                    )
+                  else
+                    FButton(
+                      text: 'Попробовать еще',
+                      onPressed: () => currentTestNotifier.reset(),
+                    ),
+                if (!type.isSwipe) FSpacing.verticalButtons,
+                FButton(
+                  text: 'Пропустить вопрос',
+                  disabled: isChecking && answerIsCorrect,
+                  onPressed: () {
+                    switch (type) {
+                      case GrammarTestType.swipe:
+                        swipeController.value.swipeDown();
+                      case GrammarTestType.accent:
+                      case GrammarTestType.comma:
+                        currentTestNotifier.skip();
+                    }
+                  },
+                  style: FButtonStyle.light,
+                ),
+              ],
+            ),
     );
   }
 }

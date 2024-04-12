@@ -11,44 +11,44 @@ part 'current_grammar_test_notifier.g.dart';
 @riverpod
 class CurrentGrammarTestNotifier extends _$CurrentGrammarTestNotifier {
   @override
-  CurrentGrammarTest? build() => null;
+  CurrentGrammarTest build() => const CurrentGrammarTest();
 
   void checkAnswer() {
-    if (state == null) return;
+    if (state.test == null) return;
 
-    assert(state!.answers.isNotEmpty, 'Answer must be selected!');
+    assert(state.answers.isNotEmpty, 'Answer must be selected!');
 
-    state = state!.copyWith(
+    state = state.copyWith(
       status: CurrentGrammarTestStatus.checking,
     );
   }
 
   void completeCheckAnswer() {
-    if (state == null) return;
+    if (state.test == null) return;
 
-    state = state!.copyWith(
+    state = state.copyWith(
       status: CurrentGrammarTestStatus.process,
     );
   }
 
   void fail() => _setNextTest(GrammarTestStatus.failed);
+
   void pass() => _setNextTest(GrammarTestStatus.passed);
-
   void reset() {
-    if (state == null) return;
+    if (state.test == null) return;
 
-    state = state!.copyWith(
+    state = state.copyWith(
       answers: [],
       status: CurrentGrammarTestStatus.process,
     );
   }
 
   void selectVariant(int index) {
-    if (state == null) return;
+    if (state.test == null) return;
 
-    List<int> answers = [...state!.answers];
+    List<int> answers = [...state.answers];
 
-    switch (state!.type) {
+    switch (state.test!.type) {
       case GrammarTestType.comma:
         answers = answers.contains(index)
             ? answers.where((e) => e != index).toList()
@@ -58,7 +58,7 @@ class CurrentGrammarTestNotifier extends _$CurrentGrammarTestNotifier {
         answers = [index];
     }
 
-    state = state!.copyWith(answers: answers);
+    state = state.copyWith(answers: answers);
   }
 
   void setTest(CurrentGrammarTest data) => state = data;
@@ -66,16 +66,16 @@ class CurrentGrammarTestNotifier extends _$CurrentGrammarTestNotifier {
   void skip() => _setNextTest(GrammarTestStatus.skipped);
 
   void _setNextTest(GrammarTestStatus curTestStatus) {
-    if (state == null) return;
+    if (state.test == null) return;
 
     ref
-        .read(grammarTestsNotifierProvider(state!.type).notifier)
-        .changeTestStatus(state!.index, curTestStatus);
+        .read(grammarTestsNotifierProvider.notifier)
+        .changeTestStatus(state.index!, curTestStatus);
 
-    final newIndex = state!.index + 1;
+    final newIndex = state.index! + 1;
 
     final test = ref
-        .read(grammarTestsNotifierProvider(state!.type).notifier)
+        .read(grammarTestsNotifierProvider.notifier)
         .getTestByIndex(newIndex);
 
     if (test == null) return;
@@ -83,8 +83,15 @@ class CurrentGrammarTestNotifier extends _$CurrentGrammarTestNotifier {
     state = CurrentGrammarTest(
       test: test,
       index: newIndex,
-      type: state!.type,
-      combo: curTestStatus.isPassed ? state!.combo + 1 : 0,
+      combo: curTestStatus.isPassed ? state.combo + 1 : 0,
     );
+
+    final testsLength =
+        ref.read(grammarTestsNotifierProvider).valueOrNull?.length ?? 0;
+    final leftTestsCount = testsLength - newIndex;
+
+    if (leftTestsCount < 4) {
+      ref.read(grammarTestsNotifierProvider.notifier).fetchNextTests();
+    }
   }
 }

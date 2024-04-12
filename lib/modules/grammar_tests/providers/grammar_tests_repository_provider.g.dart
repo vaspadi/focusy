@@ -2,6 +2,13 @@
 
 part of 'grammar_tests_repository_provider.dart';
 
+// **************************************************************************
+// RiverpodGenerator
+// **************************************************************************
+
+String _$grammarTestsRepositoryHash() =>
+    r'8fd50f39cd3d45d0d212a87ac93f2cc058f340f6';
+
 /// See also [grammarTestsRepository].
 @ProviderFor(grammarTestsRepository)
 final grammarTestsRepositoryProvider =
@@ -14,13 +21,6 @@ final grammarTestsRepositoryProvider =
   dependencies: null,
   allTransitiveDependencies: null,
 );
-
-// **************************************************************************
-// RiverpodGenerator
-// **************************************************************************
-
-String _$grammarTestsRepositoryHash() =>
-    r'c858aa5a2f6046d6c28b6abf8de60f7a31a3e05f';
 
 typedef GrammarTestsRepositoryRef
     = AutoDisposeProviderRef<IGrammarTestsRepository>;

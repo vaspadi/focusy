@@ -7,24 +7,23 @@ import 'package:focusy/modules/grammar_tests/providers/current_grammar_test_noti
 import 'package:focusy/modules/grammar_tests/providers/grammar_tests_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../enums/grammar_test_type.dart';
-
 class SwipeTestCard extends HookConsumerWidget {
   final AppinioSwiperController? controller;
+  final int backgroundCardCount;
 
   const SwipeTestCard({
     this.controller,
+    this.backgroundCardCount = 2,
     super.key,
   });
 
   @override
   Widget build(BuildContext context, ref) {
-    final tests =
-        ref.watch(grammarTestsNotifierProvider(GrammarTestType.swipe));
+    final tests = ref.watch(grammarTestsNotifierProvider);
     final test = ref.watch(currentGrammarTestNotifierProvider);
     final testNotifier = ref.read(currentGrammarTestNotifierProvider.notifier);
 
-    if (test == null) return const SizedBox.shrink();
+    if (test.test == null) return const SizedBox.shrink();
 
     final isChecking = test.status.isChecking;
     final answer = test.answers.isEmpty ? null : test.answers[0];
@@ -64,12 +63,17 @@ class SwipeTestCard extends HookConsumerWidget {
                   // height: MediaQuery.of(context).size.height * 0.5,
                   height: size,
                   child: AppinioSwiper(
+                    key: backgroundCardCount == 0
+                        ? Key((test.test?.id ?? '').toString())
+                        : null,
                     controller: controller,
                     backgroundCardOffset:
                         const Offset(0, -backgroundCardTopOffset),
-                    backgroundCardCount: 2,
+                    backgroundCardCount: backgroundCardCount,
+
                     // backgroundCardScale: 1.2,
-                    cardCount: tests.value!.length,
+                    cardCount:
+                        backgroundCardCount == 0 ? 1 : tests.value!.length,
                     threshold: 130,
                     swipeOptions: const SwipeOptions.symmetric(
                       horizontal: true,

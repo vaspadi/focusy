@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:focusy/core/widgets/index.dart';
-import 'package:focusy/core/widgets/ui/enums/answer_button_style.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../providers/current_grammar_test_notifier.dart';
@@ -14,17 +13,17 @@ class AccentTestWord extends ConsumerWidget {
     final currentTestNotifier =
         ref.read(currentGrammarTestNotifierProvider.notifier);
 
-    if (currentTest == null) return const SizedBox.shrink();
+    if (currentTest.test == null) return const SizedBox.shrink();
 
     final isChecking = currentTest.status.isChecking;
 
     return Container(
       alignment: Alignment.bottomCenter,
-      height: 100,
+      // height: 100,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.end,
-        children: currentTest.test.toSpans().map((e) {
+        children: currentTest.test!.toSpans().map((e) {
           if (!e.isVariant) {
             return FText(
               e.text,
@@ -34,42 +33,34 @@ class AccentTestWord extends ConsumerWidget {
 
           final isAnswer = currentTest.answers.contains(e.value);
 
-          return Stack(
-            clipBehavior: Clip.none,
-            alignment: Alignment.center,
+          return Column(
+            // clipBehavior: Clip.none,
+            // alignment: Alignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const SizedBox(height: 40),
-                  FText(
-                    e.text,
-                    type: FTextType.word,
-                  ),
-                ],
+              FSquareIconButton(
+                disabled: isChecking,
+                iconData: Icons.stacked_line_chart_sharp,
+                onPressed: () => currentTestNotifier.selectVariant(e.value),
+                style: () {
+                  if (!isAnswer) {
+                    return FAnswerButtonStyle.normal;
+                  }
+
+                  if (isChecking) {
+                    if (currentTest.answerIsCorrect) {
+                      return FAnswerButtonStyle.success;
+                    }
+
+                    return FAnswerButtonStyle.error;
+                  }
+
+                  return FAnswerButtonStyle.selected;
+                }(),
               ),
-              Positioned(
-                top: 0,
-                child: FSquareIconButton(
-                  disabled: isChecking,
-                  iconData: Icons.stacked_line_chart_sharp,
-                  onPressed: () => currentTestNotifier.selectVariant(e.value),
-                  style: () {
-                    if (!isAnswer) {
-                      return FAnswerButtonStyle.normal;
-                    }
-
-                    if (isChecking) {
-                      if (currentTest.answerIsCorrect) {
-                        return FAnswerButtonStyle.success;
-                      }
-
-                      return FAnswerButtonStyle.error;
-                    }
-
-                    return FAnswerButtonStyle.selected;
-                  }(),
-                ),
+              FText(
+                e.text,
+                type: FTextType.word,
               ),
             ],
           );

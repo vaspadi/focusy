@@ -1,23 +1,19 @@
 import 'package:focusy/modules/grammar_tests/index.dart';
+import 'package:focusy/modules/grammar_tests/providers/grammar_tests_request_notifier.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-import '../enums/grammar_test_type.dart';
 
 part 'grammar_tests_notifier.g.dart';
 
 @riverpod
 class GrammarTestsNotifier extends _$GrammarTestsNotifier {
   @override
-  FutureOr<List<GrammarTest>> build(GrammarTestType type) {
+  FutureOr<List<GrammarTest>> build() async {
     final repository = ref.watch(grammarTestsRepositoryProvider);
-    switch (type) {
-      case GrammarTestType.accent:
-        return repository.fetchAccentTests();
-      case GrammarTestType.comma:
-        return repository.fetchCommaTests();
-      case GrammarTestType.swipe:
-        return repository.fetchSwipeTests();
-    }
+    final request = ref.watch(grammarTestsRequestNotifierProvider);
+
+    if (request == null) return [];
+
+    return repository.fetchGrammarTests(request);
   }
 
   void changeTestStatus(int index, GrammarTestStatus status) {
@@ -26,6 +22,20 @@ class GrammarTestsNotifier extends _$GrammarTestsNotifier {
     final testsCopy = [...state.value!];
     testsCopy[index] = testsCopy[index].copyWith(status: status);
     state = AsyncData(testsCopy);
+  }
+
+  Future<void> fetchNextTests() async {
+    final repository = ref.read(grammarTestsRepositoryProvider);
+    final request = ref.read(grammarTestsRequestNotifierProvider);
+
+    if (request == null) return;
+
+    final tests = await repository.fetchGrammarTests(request);
+
+    state = AsyncData([
+      ...state.value ?? [],
+      ...tests,
+    ]);
   }
 
   List<GrammarTest> getNotPassedTests() =>

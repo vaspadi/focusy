@@ -15,6 +15,18 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    GrammarTestRoute.name: (routeData) {
+      final args = routeData.argsAs<GrammarTestRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: GrammarTestView(
+          title: args.title,
+          subtitle: args.subtitle,
+          backgroundCardCount: args.backgroundCardCount,
+          key: args.key,
+        ),
+      );
+    },
     HomeRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -27,19 +39,55 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SwipeTestView(),
       );
     },
-    GrammarTestRoute.name: (routeData) {
-      final args = routeData.argsAs<GrammarTestRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: GrammarTestView(
-          title: args.title,
-          type: args.type,
-          subtitle: args.subtitle,
-          key: args.key,
-        ),
-      );
-    },
   };
+}
+
+/// generated route for
+/// [GrammarTestView]
+class GrammarTestRoute extends PageRouteInfo<GrammarTestRouteArgs> {
+  GrammarTestRoute({
+    required String title,
+    String? subtitle,
+    int backgroundCardCount = 2,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          GrammarTestRoute.name,
+          args: GrammarTestRouteArgs(
+            title: title,
+            subtitle: subtitle,
+            backgroundCardCount: backgroundCardCount,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'GrammarTestRoute';
+
+  static const PageInfo<GrammarTestRouteArgs> page =
+      PageInfo<GrammarTestRouteArgs>(name);
+}
+
+class GrammarTestRouteArgs {
+  const GrammarTestRouteArgs({
+    required this.title,
+    this.subtitle,
+    this.backgroundCardCount = 2,
+    this.key,
+  });
+
+  final String title;
+
+  final String? subtitle;
+
+  final int backgroundCardCount;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'GrammarTestRouteArgs{title: $title, subtitle: $subtitle, backgroundCardCount: $backgroundCardCount, key: $key}';
+  }
 }
 
 /// generated route for
@@ -68,52 +116,4 @@ class SwipeTestRoute extends PageRouteInfo<void> {
   static const String name = 'SwipeTestRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [GrammarTestView]
-class GrammarTestRoute extends PageRouteInfo<GrammarTestRouteArgs> {
-  GrammarTestRoute({
-    required String title,
-    required GrammarTestType type,
-    String? subtitle,
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
-          GrammarTestRoute.name,
-          args: GrammarTestRouteArgs(
-            title: title,
-            type: type,
-            subtitle: subtitle,
-            key: key,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'GrammarTestRoute';
-
-  static const PageInfo<GrammarTestRouteArgs> page =
-      PageInfo<GrammarTestRouteArgs>(name);
-}
-
-class GrammarTestRouteArgs {
-  const GrammarTestRouteArgs({
-    required this.title,
-    required this.type,
-    this.subtitle,
-    this.key,
-  });
-
-  final String title;
-
-  final GrammarTestType type;
-
-  final String? subtitle;
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'GrammarTestRouteArgs{title: $title, type: $type, subtitle: $subtitle, key: $key}';
-  }
 }

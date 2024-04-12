@@ -1,7 +1,10 @@
+import 'package:focusy/modules/grammar_tests/models/grammar_tests_request.dart';
+import 'package:focusy/modules/http_client/index.dart';
+
 import '../models/grammar_test.dart';
 
 abstract class IGrammarTestsRepository {
-  Future<List<GrammarTest>> fetchAccentTests();
-  Future<List<GrammarTest>> fetchCommaTests();
-  Future<List<GrammarTest>> fetchSwipeTests();
+  IHttpClient get httpClient;
+
+  Future<List<GrammarTest>> fetchGrammarTests(GrammarTestsRequest request);
 }

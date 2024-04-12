@@ -1,6 +1,11 @@
+import 'package:json_annotation/json_annotation.dart';
+
 enum GrammarTestType {
+  @JsonValue(0)
   accent,
+  @JsonValue(1)
   comma,
+  @JsonValue(2)
   swipe;
 
   const GrammarTestType();

@@ -1,27 +1,24 @@
 import 'package:focusy/modules/grammar_tests/enums/current_grammar_test_status.dart';
-import 'package:focusy/modules/grammar_tests/models/grammar_test.dart';
 
-import '../enums/grammar_test_type.dart';
+import 'grammar_test.dart';
 
 class CurrentGrammarTest {
-  final GrammarTest test;
-  final GrammarTestType type;
-  final int index;
+  final GrammarTest? test;
+  final int? index;
   final List<int> answers;
   final CurrentGrammarTestStatus status;
   final int combo;
 
   const CurrentGrammarTest({
-    required this.test,
-    required this.type,
-    required this.index,
+    this.test,
+    this.index,
     this.answers = const [],
     this.status = CurrentGrammarTestStatus.process,
     this.combo = 0,
   });
 
   bool get answerIsCorrect {
-    final correctCopy = [...test.correct];
+    final correctCopy = [...test?.correct ?? []];
     final answersCopy = [...answers];
 
     if (correctCopy.length != answersCopy.length) return false;
@@ -37,25 +34,21 @@ class CurrentGrammarTest {
   }
 
   bool get hasAnswer => answers.isNotEmpty;
-  int get necessaryNumberOfAnswers => test.correct.length;
+  int get necessaryNumberOfAnswers => (test?.correct ?? []).length;
 
   CurrentGrammarTest copyWith({
     GrammarTest? test,
-    GrammarTestType? type,
     int? index,
     List<int>? answers,
     CurrentGrammarTestStatus? status,
     int? combo,
   }) {
-    final result = CurrentGrammarTest(
+    return CurrentGrammarTest(
       test: test ?? this.test,
-      type: type ?? this.type,
       index: index ?? this.index,
       answers: answers ?? this.answers,
       status: status ?? this.status,
       combo: combo ?? this.combo,
     );
-
-    return result;
   }
 }
